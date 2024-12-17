@@ -1,0 +1,612 @@
+/*
+1. Positioning (display, position)
+2. Box model (margin, padding)
+3. Typography
+4. Visual
+5. Other
+*/
+
+/*Colors*/
+/*defino todos los colores que voy a usar en mi proyecto*/
+:root{
+    --linear-bg: linear-gradient(207.8deg,#201E1C 16.69%,#0584ff 100%);
+    --bitcoin-orange: #0584ff;
+    --soft-orange:#0582ff77;
+    --secondary-blue: #1a9af7;
+    --soft-blue: #e7f4fe;
+    --warm-black: #211e1d;
+    --warm-blacl-plus: #282722;
+    --grey: #757575;
+    --off-white: #faf8f7;
+    --just-white:#fefeff;
+}
+
+/**
+Elimino el margin y padding que los navegadores agragan por default
+ */    
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+Defino el tamaño de la letra del proyecto con font-size:62.5%
+Asigno la fuente de la letra para todo mi proyecto
+*/
+html{
+    font-size: 62.5%;
+    font-family: "DM Sans", system-ui;
+}
+
+/*posiciono el header y le doy tods sus dimenciones y le asigno el color*/
+header{
+    position: relative;
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    width: 100%;
+    min-width: 320px;
+    height: 334px;
+    text-align: center;
+    background: var(--linear-bg);
+}
+
+/*dimenciono y centro la imagen*/
+header img{
+    width: 150px;
+    height: 24px;
+    margin-top: 60px;
+    align-self: center;
+}
+
+ /*dimenciono centro todas las cajas(h1, p) de los texto del header*/
+.header--title-container{
+    width: 90%;
+    min-width: 288px;
+    max-width: 900px;
+    height: 218px;
+    margin-top: 40px;
+    text-align: center;
+    align-self: center;
+}
+
+
+/*doy estilo y tamaño al titulo*/
+.header--title-container h1{
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--just-white);
+}
+
+
+/*doy estilo, color y tamaño al parrafo*/
+.header--title-container p{
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: var(--just-white);
+}
+
+/*modificamos el boton para este entre los dos bloque flotando*/
+.header--title-container  .header--button{    
+    position: absolute;
+    left: calc(50% - 118px);/*con esta propiedad mantenemos el boton centrado*/
+    top: 270px;
+    display: block;/*para que el boton no se mueva*/
+    margin-top: 35px;
+    padding: 15px;
+    width: 229px;
+    height: 48px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    color: var(--warm-black);
+    background-color: var(--off-white);
+    box-shadow: 0px 4px 8px rgba(89, 73, 30, .16);
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+ /*alineamos el elemento span dentro del boton flotante*/
+.header--button span{
+    display: inline-block;
+    width: 21px;
+    height:20px;
+    margin-left: 6px;
+    vertical-align: middle;
+    background-image: url("../assets/icons/arrow-down.svg");
+}
+
+
+/*dimensionamos el contenedor principal*/
+main{
+    width: 100%;
+    min-width: 320px;
+    height: auto;
+    background-color: var(--off-white);
+}
+
+/*contendor padre del bloque exchange*/
+.main-exchange-container{
+ width: 100%;
+ height: auto;
+ padding-top: 80px;
+ padding-bottom: 30px;
+ text-align: center;
+}
+
+
+/*contenedor del titulo(h2)*/
+.main-exchange-container--title{
+    width: 90%;
+    min-width: 288px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/*dimensionamos el espacio de la imagen y ubicamos*/
+.main-exchange-container .main-exchange-container--img{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background-image: url("../assets/pictures/bitcoin.png");
+    margin-bottom: 50px;
+    /*good practice to images*/
+    background-size: cover;/* permite que la imagen cubra todo el ancho conservando su proporción original, es decir, no crece más del límite.*/
+    background-position: center;/*para que siempre, sin importar el tamaño del contenedor, tengamos una vista del centro de la imagen.*/
+    background-repeat: no-repeat;/*para evitar que se repita en caso que la imagen sea más pequeña que el contenedor.*/
+}
+
+
+/*damos estilos al titulo de la primera secion el main*/
+.main-exchange-container--title h2{
+    margin-bottom: 25px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;    
+    color: var(--warm-black);
+}
+
+
+/*Estilos al texto de la primera secion del main*/
+.main-exchange-container--title p{
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: var(--grey);
+}
+
+/*Agrega el scroll horizontal a las seccion .main-currency-table*/
+.main-tables-container{
+    display: flex;
+    gap: 60px;
+    overflow-x: scroll; /*Agrega una barra de desplazamiento lataral en eje X*/
+    overscroll-behavior-x: contain; /*Hace que el desplazamiento en scroll, solo afecte al contenedor donde se esta aplicando*/
+    scroll-snap-type: x proximity; /*Hace que el scroll sea suave y teniendo presente un sus contenedores hijos el valor de la propiedad 'scroll-snap-aling',
+    'x' indica que el comportamiento se aplica en el eje X*/
+}
+
+/*Dimancionamos la tabla del currency*/
+.main-currency-table{
+    width: 70%;
+    scroll-snap-align: center;
+    min-width: 235px;
+    max-width: 500px;
+    height: 360px;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+}
+
+
+/*Estilos al texto "Monedas" en corrency*/
+.main-currency-table .currency-table--title{
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.3rem;
+    font-family: "DM sans";
+    color: var(--bitcoin-orange)
+}
+
+/*Dimensionamos el contenedor de la tabla*/
+.currency-table--container{
+    width: 90%;
+    min-width: 230px;
+    max-width: 300px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+/*Dimencionamos la tabla*/
+.currency-table--container table{
+    width: 100%;
+    height: 100%;
+}
+
+/*Dimancionamos las filas de la tabla y agregamos los estilos*/
+.currency-table--container td{    
+    width: 50%;
+    justify-content: center;
+    font-family: "Inter";
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.9rem;
+    color: var(--grey);
+    background-color: var(--off-white);
+}
+
+/*Agregamnos el trending down a los precios*/
+.currency-table--container .down{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 6px;
+    background-image: url("../assets/icons/trending-down.svg");
+    background-size: cover;/* permite que la imagen cubra todo el ancho conservando su proporción original, es decir, no crece más del límite.*/
+    background-position: center;/*para que siempre, sin importar el tamaño del contenedor, tengamos una vista del centro de la imagen.*/
+    background-repeat: no-repeat;/*para evitar que se repita en caso que la imagen sea más pequeña que el contenedor.*/
+}
+/*Agregamos el trending up a los precios y alineamos los items que estan dentro de la clase*/
+.currency-table--container .up{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 6px;
+    background-image: url("../assets/icons/trending-up.svg");
+    background-repeat: no-repeat;/*para evitar que se repita en caso que la imagen sea más pequeña que el contenedor.*/
+}
+
+/*Damos estilo a la seccion de actualizacion de la primera tabla "Moneda"*/
+.main-currency-table .currency-table-date p{
+    margin-bottom: 15px;
+    padding: 5px;
+    background-color: var(--soft-orange);
+    border-radius: 8px;
+}
+
+/*Agregamos estilo al titulo de la segunda tabla "Comisiones"*/
+.main-currency-table .currency-table--title__comision{
+    margin-bottom: 15px;
+    color: var(--soft-orange);
+}
+
+/*Damos estilo a la seccion de actualizacion de la segunda tabla "Comisiones"*/
+.main-currency-table .currency-table-date__comision p{
+    background-color: var(--soft-blue);
+}
+
+/*Contenedor padre del bloque card-detail*/
+.main-product-detail{
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    height: auto;
+    padding: 20px 10px;
+    background-color: var(--warm-black);
+}
+
+/*Posiciona y dimenciona el icono que esta entre la seccion exchain y product*/
+.main-product-detail .product-detail--icon{
+    position: absolute; /*para que se pueda mover entre dos cajas*/
+    left: calc(50% - 25px); /*Hace el calculo constante para que siempre este centrado*/
+    top:-15px; /*se manipula su altura respecto a su padre directo*/
+    display: block; /*Bloquea el elemento */
+    width: 40px;
+    height: 24px;
+    background-image: url("../assets/icons/group.svg");
+    background-size: cover;/* permite que la imagen cubra todo el ancho conservando su proporción original, es decir, no crece más del límite.*/
+    background-position: center;/*para que siempre, sin importar el tamaño del contenedor, tengamos una vista del centro de la imagen.*/
+    background-repeat: no-repeat;/*para evitar que se repita en caso que la imagen sea más pequeña que el contenedor.*/
+}
+
+/*Dimensiona el contenedor donde se va a contener el titulo de la seccion product*/
+.product-detail--title{
+    width: 90%;
+    min-width: 288px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/*Da margen y estilo al titulo de la seccion product*/
+.product-detail--title h2{
+    margin-bottom: 20px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--just-white);
+}
+
+/*Da margen y estilo al parrafo de la seccion product*/
+.product-detail--title p{
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #808080;
+}
+
+/*Dimansiona y da estilo a las tarjetas que contiene la informacion de la seccion product*/
+.product-detail--card{
+    width: 90%;
+    min-width: 288px;
+    max-width: 400px;
+    min-height: 150px; /*se soluciona un posible problema "overflow", si contenido es mas grande, se adapta*/
+    margin: 15px auto;
+    padding: 15px;
+    background-color: var(--warm-blacl-plus);
+    border-radius: 8px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .16);
+    
+}
+
+/*Da margen y estilo al titulo de la seccion product*/
+.product--card-title{
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    color: var(--just-white);
+}
+
+/*Da margen y estilo al parrafo de la seccion product*/
+.pruduct--card-body{
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #808080;
+}
+
+/*Dimenciona y prepara el area donde se colocara el icono de las tarjetas en la seccion product*/
+.product--card-icon{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-size: cover;/* permite que la imagen cubra todo el ancho conservando su proporción original, es decir, no crece más del límite.*/
+    background-position: center;/*para que siempre, sin importar el tamaño del contenedor, tengamos una vista del centro de la imagen.*/
+    background-repeat: no-repeat;/*para evitar que se repita en caso que la imagen sea más pequeña que el contenedor.*/
+}
+
+/*Renderiza el icono clock*/
+.clock{
+    margin-bottom: 5px;
+    background-image: url("../assets/icons/clock.svg");    
+}
+
+/*Renderiza el icono eye*/
+.eye{
+    margin-bottom: 5px;
+    background-image: url("../assets/icons/eye.svg");
+}
+
+/*Renderiza el icono dollar*/
+.dollar{
+    margin-bottom: 5px;
+    background-image: url("../assets/icons/dollar-sign.svg");
+}
+
+/*Renderiza el icono check-circle*/
+.check-circle{
+    margin-bottom: 5px;
+    background-image: url("../assets/icons/check-circle.svg");
+}
+
+/*Dimensiona y renderiza la seccion bitcoin-image-container*/
+.bitcoin-image-container{
+    width: 100%;
+    min-width: 320px;
+    height: 50vh;
+    background-image: url("../assets/pictures/bitcoinbaby2x.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+/*Centra y aplica los estilos al titulo de bitcoin-image-conatiner*/
+.bitcoin-image-container h2{
+    padding-top: 20px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.4rem;
+    color: var(--just-white);
+
+}
+
+/*Dimensiona y alinea el texto que va ir dentro la seccion main-plans-container*/
+.main-plans-container{
+    width: 100%;
+    min-width: 320px;
+    padding-bottom: 70px;
+    text-align: center;
+}
+
+/*Dimensiona y alinea el plans-container-title*/
+.plans-container-title{
+    width: 90%;
+    min-width: 288px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+/*Da estolo al titulo de la seccion plans-container-title*/
+.plans-container-title h2{
+    padding-top: 50px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--warm-black);
+}
+
+/*Da estolo al parrafo de la seccion plans-container-title*/
+.plans-container-title p{
+    padding-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: var(--grey);
+
+}
+
+/**Hace que las tarjetas .plans-container--card tengan un scroll horizontal*/
+.plans-container--slider{
+    display: flex; /*Alinea las tarjetas de forma horizontal*/
+    gap: 60px; /*Da espacio entre cada tarjeta en la parte interna*/
+    height: 360px; /*Da altura a las tarjetas*/
+    overflow-x: scroll; /*Agrega una barra de desplazamiento lataral en eje X*/
+    overscroll-behavior-x: contain; /*Hace que el desplazamiento en scroll, solo afecte al contenedor donde se esta aplicando*/
+    scroll-snap-type: x proximity; /*Hace que el scroll sea suave y teniendo presente un sus contenedores hijos el valor de la propiedad 'scroll-snap-aling',
+    'x' indica que el comportamiento se aplica en el eje X*/
+}
+
+/*Posiciona, dimenciona y da estilo a las tarjetas en la seccion, .plans-conatiner--card*/
+.plans-container--card{
+    position: relative;
+    scroll-snap-align: center;
+    width: 70%;
+    min-width: 235px;
+    max-width: 400px;
+    height: 270px;
+    margin: 50px auto 0;
+    padding: 0 15px;
+    background-color: var(--just-white);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .16);
+    border-radius: 8px;
+
+}
+
+/*Posiciona, ubica y da estilo, a la tarjeta reconandad, en .plans-cona¿tainer--card .recomended*/
+.recomended{
+    position: absolute;
+    width: 151px;
+    height: 40px;
+    padding: 12px;
+    left: calc(50% - 76px);
+    top: -18px;
+    font-family: "Inter";
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    background-color: var(--bitcoin-orange);
+    color: var(--just-white);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/*Posiciona y da estilo al titulo de la tarjeta en la seccion de .plans-container--card*/
+.plans-card--title{
+    padding-top: 50px;
+    font-size: 1.4rem;
+    font-weight: medium;
+    line-height: 1.8rem;
+    color: var(--warm-black);
+}
+
+/*Posiciona y da estilo al precio de la tarjeta en la seccion de .plans-container--card*/
+.plans-card--price{
+    padding-top: 10px;
+    font-family: "Inter";
+    font-size: 5.2rem;
+    font-weight: bold;
+    line-height: 6.3rem;
+}
+
+/*Posisciona y da estilo al sinbolo "$" de la tarjeta en la seccion de .plans-container--card*/
+.plans-card--price span {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.4rem;
+    vertical-align: top;
+}
+
+/*Da estilo al texto que esta debajo de .plans-card--price*/
+.plans-card--saving{
+    padding-top: 15px;
+    font-family: 'Inter';
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: var(--grey);
+}
+
+/*Dimenciona y da estilo al botton que esta dentro .plans-info--container*/
+.plans-card--ca{
+    width: 195px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: var(--just-white);
+    border: 2px solid var(--bitcoin-orange);
+    border-radius: 5px;
+    font-family: "DM Sans";
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    color: var(--warm-black);
+}
+
+/*Alinea y da estilo al icono que esta dentro del boton .plans-card--ca que esta en .plans-info--container*/
+.plans-card--ca span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+    background-image: url("../assets/icons/arrow-right-pay.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*Agrega estilo al botton que esta en .plans-info--container*/
+.plans-card--ca:hover{
+    background-color: var(--soft-orange);
+    transition: .5s;
+    cursor: pointer;
+}
+
+/*Damos compartamiento a las cajas, dimansionamos y damos estilo al footer*/
+.footer-container{
+    display: flex;
+    width: 100%;
+    min-width: 320px;
+    height: 30vh;
+    background-color: var(--bitcoin-orange);
+}
+
+/*Aplicamos comportamiento a las cajas, dimencionamos y alineamos las cajas*/
+.footer-container section{
+    display:flex;
+    width: 50%;
+    justify-content: center;
+    align-self:center;
+}
+
+/*Damos estilo a los hipervinculos del footer*/
+.footer-container .footer--contact-container ul{
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    list-style: none;
+}
+
+/*Aplicamos espacio a los hipervinculos del footer*/
+.footer-container .footer--contact-container li{
+    padding: 5px 0;
+}
+
+/*Quitamos los estilos por defecto de los hipervinculos y damos color al texto*/
+.footer-container .footer--contact-container a{
+    text-decoration: none;
+    color: var(--just-white)
+    
+}
+
+
+
